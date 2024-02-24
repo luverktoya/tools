@@ -14,23 +14,13 @@ import { getCookies } from '~/components/util/SharedUtils';
 const formats = [
   '&#$1$2$3$4$5$6$f$c',
   '<#$1$2$3$4$5$6>$f$c',
-  '<##$1$2$3$4$5$6>$f$c',
   '&x&$1&$2&$3&$4&$5&$6$f$c',
   '§x§$1§$2§$3§$4§$5§$6$f$c',
-  '[COLOR=#$1$2$3$4$5$6]$c[/COLOR]',
   'MiniMessage',
 ];
 
 const presets = {
-  'birdflop': ['#084CFB', '#ADF3FD'],
-  'SimplyMC': ['#00FFE0', '#EB00FF'],
-  'Rainbow': ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#9400D3'],
-  'Skyline': ['#1488CC', '#2B32B2'],
-  'Mango': ['#FFE259', '#FFA751'],
-  'Vice City': ['#3494E6', '#EC6EAD'],
-  'Dawn': ['#F3904F', '#3B4371'],
-  'Rose': ['#F4C4F3', '#FC67FA'],
-  'Firewatch': ['#CB2D3E', '#EF473A'],
+  'stun': ['#FFFFFF', '#32CD32'],
 };
 
 export const setCookie = $(function (store: any) {
@@ -49,8 +39,8 @@ export const setCookie = $(function (store: any) {
 });
 
 const defaults = {
-  colors: presets.birdflop,
-  text: 'birdflop',
+  colors: presets.stun,
+  text: 'stun',
   format: '&#$1$2$3$4$5$6$f$c',
   formatchar: '&',
   customFormat: false,
@@ -113,7 +103,7 @@ export default component$(() => {
           'font-mc-bold-italic': store.bold && store.italic,
         }}>
           {(() => {
-            const text = store.text ? store.text : 'birdflop';
+            const text = store.text ? store.text : 'stun';
 
             let colors = store.colors.map((color: string) => convertToRGB(color));
             if (colors.length < 2) colors = [convertToRGB('#00FFE0'), convertToRGB('#EB00FF')];
@@ -229,7 +219,7 @@ export default component$(() => {
           </div>
           <div class="md:col-span-2 lg:col-span-3">
             <div class="flex flex-col gap-3" id="inputs">
-              <TextInput id="input" value={store.text} placeholder="birdflop" onInput$={(event: any) => { store.text = event.target!.value; setCookie(JSON.stringify(store)); }}>
+              <TextInput id="input" value={store.text} placeholder="stun" onInput$={(event: any) => { store.text = event.target!.value; setCookie(JSON.stringify(store)); }}>
                 {t('color.inputText@@Input Text')}
               </TextInput>
 
