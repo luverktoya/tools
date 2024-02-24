@@ -26,9 +26,9 @@ export default component$(() => {
                 Animated TAB
               </Header>
             </Card>
-            <Card href="/resources/animpreview" color="green" blobs hover="clickable">
-              <Header subheader="Preview TAB Animations without the need to put them in-game">
-                TAB Animation Previewer
+            <Card href="/resources/sparkprofile" color="green" blobs hover="clickable">
+              <Header subheader="Analyze Spark Profile and optimize your fish">
+                Spark Profiler
               </Header>
             </Card>
           </div>
