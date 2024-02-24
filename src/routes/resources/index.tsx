@@ -18,7 +18,7 @@ export default component$(() => {
           <div class="flex [&>*]:flex-1 flex-wrap gap-4">
             <Card href="/resources/rgb" color="red" blobs hover="clickable">
               <Header subheader="RGB gradient creator">
-                RGBirdflop
+                Gradients
               </Header>
             </Card>
             <Card href="/resources/animtab" color="blue" blobs hover="clickable">
@@ -43,14 +43,14 @@ export default component$(() => {
                 Spark Profile
               </Header>
             </Card>
-            <Card href="/resources/papertimings" color="pink" blobs hover="clickable">
-              <Header subheader="Analyze Paper Timings Reports and get possible optimizations">
-                Paper Timings
+            <Card href="//tools.p2g.lol" color="pink" blobs hover="clickable">
+              <Header subheader="Quickly edit and convert any video">
+                Play2GO Video Tools
               </Header>
             </Card>
-            <Card href="/resources/flags" color="orange" blobs hover="clickable">
-              <Header subheader="A simple script generator to start your Minecraft servers with optimal flags">
-                Flags
+            <Card href="//check.stun.services" color="orange" blobs hover="clickable">
+              <Header subheader="Check any server status">
+                Check
               </Header>
             </Card>
           </div>
