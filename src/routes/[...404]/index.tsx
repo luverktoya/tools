@@ -6,13 +6,7 @@ import Background from '~/components/images/background.png?jsx';
 export default component$(() => {
   return (
     <section class="flex mx-auto max-w-7xl px-6 items-center justify-center min-h-[calc(100lvh-68px)]" >
-      <Background class="fixed inset-0 scale-110 overflow-hidden -z-10 h-[100lvh] w-[100lvw] object-cover object-center opacity-45 grayscale blur-lg" id="bg" alt="background" />
       <div class="text-red-400 text-4xl">
-        <LogoBirdflop confused width={100} fillGradient={['#54daf4', '#545eb6']} />
-        <h1 class="font-bold mb-4 mt-6">404: Page not found</h1>
-        <p class="font-italic text-gray-400 text-xl">
-          Whoops! You've hit a dead-end.
-        </p>
         <div class="flex mt-4">
           <Link href="/">
             <Button size="lg" color="blue">
@@ -26,19 +20,7 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: '404: Page not found',
+  title: '404',
   meta: [
-    {
-      name: 'description',
-      content: 'Whoops! You\'ve hit a dead-end.',
-    },
-    {
-      name: 'og:description',
-      content: 'Whoops! You\'ve hit a dead-end.',
-    },
-    {
-      name: 'og:image',
-      content: '/branding/icon.png',
-    },
   ],
 };
