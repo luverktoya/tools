@@ -23,7 +23,7 @@ export default component$(() => {
     <Nav />
     <Slot />
     {store.cookies != 'true' &&
-      <div id="cookieprompt" class="fixed flex flex-col bottom-4 right-4 bg-gray-800 rounded-lg shadow-md p-6" style="cursor: auto;">
+      <div id="cookieprompt" class="fixed flex flex-col bottom-4 right-4 bg-neutral-800 rounded-lg shadow-md p-6" style="cursor: auto;">
         <span class="text-gray-200 text-md mb-3 max-w-[17rem]">
           We use cookies to automatically save and load your preferences.
         </span>
