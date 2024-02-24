@@ -278,77 +278,7 @@ export default component$(() => {
                 </>
               }
 
-              <TextInput id="prefix" value={store.prefix} placeholder={t('gradient.prefixPlaceholder@@example: \'/nick \'')} onInput$={(event: any) => { store.prefix = event.target!.value; setCookie(JSON.stringify(store)); }}>
-                {t('gradient.prefix@@Prefix (Usually used for commands)')}
-              </TextInput>
-
-              <label>
-                {t('color.presets@@Presets')}
-              </label>
               <div class="flex gap-2">
-                <Button id="export" onClick$={() => {
-                  navigator.clipboard.writeText(JSON.stringify({ version: presetVersion, ...store, alerts: undefined }));
-                  const alert = {
-                    class: 'text-green-500',
-                    translate: 'color.exportedPreset',
-                    text: 'Successfully exported preset to clipboard!',
-                  };
-                  store.alerts.push(alert);
-                  setTimeout(() => {
-                    store.alerts.splice(store.alerts.indexOf(alert), 1);
-                  }, 2000);
-                }}>
-                  {t('color.export@@Export')}
-                </Button>
-                <TextInputRaw name="import" placeholder={t('color.import@@Import (Paste here)')} onInput$={async (event: any) => {
-                  let json: any;
-                  try {
-                    json = JSON.parse(event.target!.value);
-                  } catch (error) {
-                    const alert = {
-                      class: 'text-red-500',
-                      translate: 'color.invalidPreset',
-                      text: 'INVALID PRESET!\nIf this is an old preset, please update it using the <a class="text-blue-400 hover:underline" href="/PresetTools">Preset Tools</a> page, If not please report to the <a class="text-blue-400 hover:underline" href="https://discord.gg/9vUZ9MREVz">Developers</a>.',
-                    };
-                    store.alerts.push(alert);
-                    return setTimeout(() => {
-                      store.alerts.splice(store.alerts.indexOf(alert), 1);
-                    }, 5000);
-                  }
-                  Object.keys(json).forEach(key => {
-                    if ((store as any)[key] === undefined) return;
-                    (store as any)[key] = json[key];
-                  });
-                  const alert = {
-                    class: 'text-green-500',
-                    translate: 'color.importedPreset',
-                    text: 'Successfully imported preset!',
-                  };
-                  store.alerts.push(alert);
-                  setTimeout(() => {
-                    store.alerts.splice(store.alerts.indexOf(alert), 1);
-                  }, 2000);
-                }} />
-                <Button id="createurl" onClick$={() => {
-                  const base_url = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
-                  const url = new URL(base_url);
-                  const params = { ...store, alerts: undefined };
-                  Object.entries(params).forEach(([key, value]) => {
-                    url.searchParams.set(key, String(value));
-                  });
-                  window.history.pushState({}, '', url.href);
-                  const alert = {
-                    class: 'text-green-500',
-                    translate: 'color.exportedPresetUrl',
-                    text: 'Successfully exported preset to url!',
-                  };
-                  store.alerts.push(alert);
-                  setTimeout(() => {
-                    store.alerts.splice(store.alerts.indexOf(alert), 1);
-                  }, 2000);
-                }}>
-                  {t('color.url@@Export As URL')}
-                </Button>
               </div>
               {store.alerts.map((alert: any, i: number) => (
                 <p key={`preset-alert${i}`} class={alert.class} dangerouslySetInnerHTML={t(`${alert.translate}@@${alert.text}`)} />
