@@ -100,7 +100,7 @@ export const Brand = component$(() => {
 
 export const MainNav = component$(() => {
   return (
-    <div class={'bg-neutral-700/20 py-2'}>
+    <div class={'bg-neutral-900 py-2'}>
       <div class={'mx-auto relative flex items-center justify-between max-w-7xl px-2'}>
         <Brand />
         <div class="flex flex-1 items-center justify-end">
