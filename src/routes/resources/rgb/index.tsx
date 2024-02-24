@@ -98,12 +98,6 @@ export default component$(() => {
   return (
     <section class="flex mx-auto max-w-7xl px-6 items-center justify-center min-h-[calc(100svh)] pt-[72px]">
       <div class="my-10 min-h-[60px] w-full">
-        <h1 class="font-bold text-gray-50 text-2xl sm:text-4xl mb-2">
-          {t('gradient.title@@Hex Gradient')}
-        </h1>
-        <h2 class="text-gray-50 text-base sm:text-xl mb-12">
-          {t('gradient.subtitle@@Hex color gradient creator')}
-        </h2>
 
         {/* charlimit={256} */}
         <TextArea output id="Output" value={generateOutput(store.text, store.colors, store.format, store.formatchar, store.prefix, store.bold, store.italic, store.underline, store.strikethrough)}>
@@ -386,28 +380,13 @@ export default component$(() => {
             </div>
           </div>
         </div>
-        <div class="text-sm">
-          RGBirdflop (RGB Birdflop) is a free and open-source Minecraft RGB gradient creator that generates hex formatted text. RGB Birdflop is a public resource developed by Birdflop, a 501(c)(3) nonprofit providing affordable and accessible hosting and public resources. If you would like to support our mission, please <a href="https://www.paypal.com/donate/?hosted_button_id=6NJAD4KW8V28U">click here</a> to make a charitable donation, 100% tax-deductible in the US.
-        </div>
       </div>
     </section>
   );
 });
 
 export const head: DocumentHead = {
-  title: 'RGB Birdflop - Minecraft RGB Gradient Creator',
+  title: 'Gradients',
   meta: [
-    {
-      name: 'description',
-      content: 'Public resources developed by Birdflop. Birdflop is a registered 501(c)(3) nonprofit Minecraft host aiming to provide affordable and accessible hosting and resources. Check out our plans starting at $2/GB for some of the industry\'s fastest and cheapest servers, or use our free public resources.',
-    },
-    {
-      name: 'og:description',
-      content: 'Public resources developed by Birdflop. Birdflop is a registered 501(c)(3) nonprofit Minecraft host aiming to provide affordable and accessible hosting and resources. Check out our plans starting at $2/GB for some of the industry\'s fastest and cheapest servers, or use our free public resources.',
-    },
-    {
-      name: 'og:image',
-      content: '/branding/icon.png',
-    },
   ],
 };
