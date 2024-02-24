@@ -11,9 +11,8 @@ export default component$(() => {
         Resources
       </h1>
       <div class="min-h-[60px] text-2xl flex flex-col gap-4">
-        <Card color="darkgray">
-          <Header subheader="Tools to help you create gradient text in Minecraft.">
-            Gradient Tools
+          <Header>
+            Tools
           </Header>
           <div class="flex [&>*]:flex-1 flex-wrap gap-4">
             <Card href="/resources/rgb" color="red" blobs hover="clickable">
@@ -32,29 +31,23 @@ export default component$(() => {
               </Header>
             </Card>
           </div>
-        </Card>
-        <Card color="darkgray">
-          <Header subheader="Tools to help configure and setup minecraft servers.">
-            Server tools
-          </Header>
           <div class="flex [&>*]:flex-1 flex-wrap gap-4">
-            <Card href="/resources/sparkprofile" color="yellow" blobs hover="clickable">
-              <Header subheader="Analyze Spark Profiles and get possible optimizations">
-                Spark Profile
+            <Card href="/resources/flags" color="yellow" blobs hover="clickable">
+              <Header subheader="Get optimal flags for your server">
+                Flags
               </Header>
             </Card>
             <Card href="//tools.p2g.lol" color="pink" blobs hover="clickable">
               <Header subheader="Quickly edit and convert any video">
-                Play2GO Video Tools
+                Play2GO Video
               </Header>
             </Card>
             <Card href="//check.stun.services" color="orange" blobs hover="clickable">
               <Header subheader="Check any server status">
-                Check
+                Server Status
               </Header>
             </Card>
           </div>
-        </Card>
       </div>
     </section>
   );
