@@ -85,7 +85,7 @@ export const Brand = component$(() => {
   const location = useLocation();
   return (
     <div class="flex items-center justify-start">
-      <Link href="/" class="transition ease-in-out text-gray-100 hover:bg-neutral-700/20 hover:text-white drop-shadow-xl px-3 pb-3 pt-3 rounded-lg text-lg flex tracking-wider items-center">
+      <Link href="/" class="transition ease-in-out text-gray-100 hover:bg-neutral-900 hover:text-white drop-shadow-xl px-3 pb-3 pt-3 rounded-lg text-lg flex tracking-wider items-center">
         <img src="//luver.one/48.png" />
         <div class={{
           'transition-all pl-2': true,
