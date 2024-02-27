@@ -1,2 +1,2 @@
 # https://developers.cloudflare.com/pages/platform/redirects/
-/ /resources 301
+/ /resources/ 301
