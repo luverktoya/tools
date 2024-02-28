@@ -39,7 +39,7 @@ function getJava(config: Record<AvailableConfig | 'existingFlags', any>): string
 
   // GUI variable is supported
   if ('gui' in config && !config.gui) {
-    base.push('--nogui');
+    base.push('');
   }
 
   return base.join(' ');
