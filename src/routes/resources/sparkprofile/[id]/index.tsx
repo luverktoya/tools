@@ -47,19 +47,7 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: 'Analyze Timings',
+  title: 'Spark',
   meta: [
-    {
-      name: 'description',
-      content: 'Analyze your Paper Timings to get optimization recommendations',
-    },
-    {
-      name: 'og:description',
-      content: 'Analyze your Paper Timings to get optimization recommendations',
-    },
-    {
-      name: 'og:image',
-      content: '/branding/icon.png',
-    },
   ],
 };
