@@ -21,6 +21,7 @@ const formats = [
 
 const presets = {
   'stun': ['#FFFFFF', '#32CD32'],
+  'resolver': ['#91EAE4', '#86A8E7', '#7F7FD5'],
 };
 
 export const setCookie = $(function (store: any) {
