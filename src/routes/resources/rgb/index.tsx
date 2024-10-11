@@ -50,6 +50,7 @@ const defaults = {
   italic: false,
   underline: false,
   strikethrough: false,
+  smallcaps: false,
 };
 
 export const useCookies = routeLoader$(async ({ cookie, url }) => {
@@ -298,6 +299,9 @@ export default component$(() => {
               <Toggle id="strikethrough" checked={store.strikethrough}
                 onChange$={(event: any) => { store.strikethrough = event.target!.checked; setCookie(JSON.stringify(store)); }}
                 label={`${t('color.strikethrough@@Strikethrough')} - ${store.formatchar + 'm'}`} />
+              <Toggle id="smallcaps" checked={store.smallcaps}
+                onChange$={(event: any) => { store.smallcaps = event.target!.checked; setCookie(JSON.stringify(store)); }}
+                label={`color.strikethrough@@Small Caps`} />
             </div>
           </div>
         </div>
