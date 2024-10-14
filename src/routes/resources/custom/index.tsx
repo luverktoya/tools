@@ -6,21 +6,16 @@ import { convertToHex, convertToRGB, generateOutput, getRandomColor } from '~/co
 
 import { ChevronDown, ChevronUp, ColorFillOutline, SettingsOutline, Text } from 'qwik-ionicons';
 
-import { Button, ColorInput, Header, NumberInput, SelectInput, TextArea, TextInput, Toggle } from '@luminescent/ui';
+import { Button, ColorInput, Header, NumberInput, TextArea, TextInput, Toggle } from '@luminescent/ui';
 import { inlineTranslate, useSpeak } from 'qwik-speak';
 import { getCookies } from '~/components/util/SharedUtils';
 
 const formats = [
-  '&#$1$2$3$4$5$6$f$c',
-  '<#$1$2$3$4$5$6>$f$c',
   '&x&$1&$2&$3&$4&$5&$6$f$c',
-  '§x§$1§$2§$3§$4§$5§$6$f$c',
-  'MiniMessage',
 ];
 
 const presets = {
   'stun': ['#FFFFFF', '#32CD32'],
-  'resolver': ['#91EAE4', '#86A8E7', '#7F7FD5'],
 };
 
 export const setCookie = $(function (store: any) {
@@ -38,14 +33,21 @@ export const setCookie = $(function (store: any) {
   });
 });
 
+const replacements = {
+  'a': 'ᴀ', 'b': 'ʙ', 'c': 'ᴄ', 'd': 'ᴅ', 'e': 'ᴇ', 'f': 'ғ', 'g': 'ɢ',
+  'h': 'ʜ', 'i': 'ɪ', 'j': 'ᴊ', 'k': 'ᴋ', 'l': 'ʟ', 'm': 'ᴍ', 'n': 'ɴ',
+  'o': 'ᴏ', 'p': 'ᴘ', 'q': 'ǫ', 'r': 'ʀ', 's': 's', 't': 'ᴛ', 'u': 'ᴜ',
+  'v': 'ᴠ', 'w': 'ᴡ', 'x': 'x', 'y': 'ʏ', 'z': 'ᴢ',
+};
+
 const defaults = {
   colors: presets.stun,
   text: 'stun',
-  format: '&#$1$2$3$4$5$6$f$c',
+  format: '&x&$1&$2&$3&$4&$5&$6$f$c',
   formatchar: '&',
   customFormat: false,
   prefix: '',
-  bold: false,
+  bold: true,
   italic: false,
   underline: false,
   strikethrough: false,
@@ -69,6 +71,10 @@ export default component$(() => {
     }[],
   }, { deep: true });
 
+  const output = store.text.replace(/[a-z]/g, function(match) {
+    return replacements[match];
+  });
+
   const handleSwap = $(
     function handleSwap(currentIndex: number, newIndex: number) {
       const colorsLength = store.colors.length;
@@ -90,9 +96,9 @@ export default component$(() => {
       <div class="my-10 min-h-[60px] w-full">
 
         {/* charlimit={256} */}
-        <TextArea output id="Output" value={generateOutput(store.text, store.colors, store.format, store.formatchar, store.prefix, store.bold, store.italic, store.underline, store.strikethrough)}>
-          <Header subheader={t('color.outputSubtitle@@Copy-paste this for RGB text!')}>
-            {t('color.output@@Output')}
+        <TextArea output id="Output" value={generateOutput(output, store.colors, store.format, store.formatchar, store.prefix, store.bold, store.italic, store.underline, store.strikethrough)}>
+          <Header>
+            Вывод
           </Header>
         </TextArea>
 
@@ -153,18 +159,6 @@ export default component$(() => {
 
         <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <div class="hidden sm:flex flex-col gap-3 relative" id="colors">
-            <SelectInput id="color-preset" class={{ 'w-full': true }} onChange$={
-              (event: any) => {
-                if (event.target!.value == 'custom') return;
-                store.colors = presets[event.target!.value as keyof typeof presets];
-                setCookie(JSON.stringify(store));
-              }
-            } values={[
-              ...Object.keys(presets).map(preset => ({ name: preset, value: preset })),
-              { name: t('color.custom@@Custom'), value: 'custom' },
-            ]} value={Object.keys(presets).find((preset: any) => presets[preset as keyof typeof presets].toString() == store.colors.toString()) ?? 'custom'}>
-              {t('color.colorPreset@@Color Preset')}
-            </SelectInput>
             <NumberInput input min={2} max={store.text.length} value={store.colors.length} id="colorsinput" class={{ 'w-full': true }}
               onChange$={(event: any) => {
                 if (event.target!.value < 2) return;
@@ -186,7 +180,7 @@ export default component$(() => {
                 setCookie(JSON.stringify(store));
               }}
             >
-              {t('color.colorAmount@@Color Amount')}
+              Количество цветов
             </NumberInput>
             <div class="flex flex-col gap-2 overflow-auto sm:max-h-[500px]">
               {store.colors.map((color: string, i: number) => {
@@ -201,7 +195,7 @@ export default component$(() => {
                     class={{ 'w-full': true }}
                     presetColors={store.colors}
                   >
-                    {t('color.hexColor@@Hex Color')} {i + 1}
+                    HEX-цвет {i + 1}
                   </ColorInput>
                   <div class="bg-gray-800 flex ml-2 rounded-md border border-gray-700">
                     <button onClick$={() => handleSwap(i, i - 1)} class="hover:bg-gray-700 px-2 py-3 rounded-l-md transition-all">
@@ -219,44 +213,8 @@ export default component$(() => {
           <div class="md:col-span-2 lg:col-span-3">
             <div class="flex flex-col gap-3" id="inputs">
               <TextInput id="input" value={store.text} placeholder="stun" onInput$={(event: any) => { store.text = event.target!.value; setCookie(JSON.stringify(store)); }}>
-                {t('color.inputText@@Input Text')}
+                Текст
               </TextInput>
-
-              <div class="flex flex-col md:grid grid-cols-2 gap-2">
-                <SelectInput id="format" value={store.customFormat ? 'custom' : store.format} class={{ 'w-full': true }} onChange$={
-                  (event: any) => {
-                    if (event.target!.value == 'custom') {
-                      store.customFormat = true;
-                    }
-                    else {
-                      store.customFormat = false;
-                      store.format = event.target!.value;
-                    }
-                    setCookie(JSON.stringify(store));
-                  }
-                } values={[
-                  ...formats.map(format => ({
-                    name: format
-                      .replace('$1', 'r').replace('$2', 'r').replace('$3', 'g').replace('$4', 'g').replace('$5', 'b').replace('$6', 'b')
-                      .replace('$f', `${store.bold ? store.formatchar + 'l' : ''}${store.italic ? store.formatchar + 'o' : ''}${store.underline ? store.formatchar + 'n' : ''}${store.strikethrough ? store.formatchar + 'm' : ''}`)
-                      .replace('$c', ''),
-                    value: format,
-                  })),
-                  {
-                    name: store.customFormat ? store.format
-                      .replace('$1', 'r').replace('$2', 'r').replace('$3', 'g').replace('$4', 'g').replace('$5', 'b').replace('$6', 'b')
-                      .replace('$f', `${store.bold ? store.formatchar + 'l' : ''}${store.italic ? store.formatchar + 'o' : ''}${store.underline ? store.formatchar + 'n' : ''}${store.strikethrough ? store.formatchar + 'm' : ''}`)
-                      .replace('$c', '')
-                      : t('color.custom@@Custom'),
-                    value: 'custom',
-                  },
-                ]}>
-                  {t('color.colorFormat@@Color Format')}
-                </SelectInput>
-                <TextInput id="formatchar" value={store.formatchar} placeholder="&" onInput$={(event: any) => { store.formatchar = event.target!.value; setCookie(JSON.stringify(store)); }}>
-                  {t('color.formatCharacter@@Format Character')}
-                </TextInput>
-              </div>
 
               {
                 store.customFormat && <>
@@ -286,16 +244,11 @@ export default component$(() => {
             <div class="sm:mt-6 mb-4 space-y-4 hidden sm:block" id="formatting">
               <Toggle id="bold" checked={store.bold}
                 onChange$={(event: any) => { store.bold = event.target!.checked; setCookie(JSON.stringify(store)); }}
-                label={`${t('color.bold@@Bold')} - ${store.formatchar}l`} />
-              <Toggle id="italic" checked={store.italic}
-                onChange$={(event: any) => { store.italic = event.target!.checked; setCookie(JSON.stringify(store)); }}
-                label={`${t('color.italic@@Italic')} - ${store.formatchar}o`} />
-              <Toggle id="underline" checked={store.underline}
-                onChange$={(event: any) => { store.underline = event.target!.checked; setCookie(JSON.stringify(store)); }}
-                label={`${t('color.underline@@Underline')} - ${store.formatchar}n`} />
-              <Toggle id="strikethrough" checked={store.strikethrough}
-                onChange$={(event: any) => { store.strikethrough = event.target!.checked; setCookie(JSON.stringify(store)); }}
-                label={`${t('color.strikethrough@@Strikethrough')} - ${store.formatchar + 'm'}`} />
+                label='Жирный шрифт'
+                disabled />
+              <Toggle id="smallcaps" checked={store.bold}
+                disabled
+                label="Маленький шрифт" />
             </div>
           </div>
         </div>
