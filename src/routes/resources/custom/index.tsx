@@ -7,7 +7,6 @@ import { convertToHex, convertToRGB, generateOutput, getRandomColor } from '~/co
 import { ChevronDown, ChevronUp, ColorFillOutline, SettingsOutline, Text } from 'qwik-ionicons';
 
 import { Button, ColorInput, Header, NumberInput, TextArea, TextInput, Toggle } from '@luminescent/ui';
-import { inlineTranslate, useSpeak } from 'qwik-speak';
 import { getCookies } from '~/components/util/SharedUtils';
 
 const presets = {
@@ -54,8 +53,6 @@ export const useCookies = routeLoader$(async ({ cookie, url }) => {
 });
 
 export default component$(() => {
-  useSpeak({ assets: ['gradient', 'color'] });
-  const t = inlineTranslate();
   const cookies = useCookies().value;
   const store = useStore({
     ...defaults,
