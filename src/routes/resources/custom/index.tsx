@@ -65,7 +65,7 @@ export default component$(() => {
   }, { deep: true });
 
   const output = store.text.replace(/[a-z]/g, function(match) {
-    return replacements[match];
+    return replacements[match as keyof typeof replacements];
   });
 
   const handleSwap = $(

@@ -2,9 +2,9 @@
 
 import { $, Slot, component$, useStore } from '@builder.io/qwik';
 import { Link, useLocation } from '@builder.io/qwik-city';
-import { LoadingIcon, LogoBirdflop, LogoDiscord } from '@luminescent/ui';
+import { LoadingIcon } from '@luminescent/ui';
 
-import { ChevronDown, CubeOutline, GlobeOutline, LogoGithub, Menu, ServerOutline } from 'qwik-ionicons';
+import { ChevronDown, CubeOutline, GlobeOutline, LogoGithub, Menu } from 'qwik-ionicons';
 
 import type { SpeakLocale } from 'qwik-speak';
 import { inlineTranslate, useSpeakConfig } from 'qwik-speak';
@@ -14,7 +14,6 @@ import { languages } from '~/speak-config';
 export default component$(() => {
   const t = inlineTranslate();
   const store = useStore({ mobilemenu: false });
-  const location = useLocation();
 
   return (
     <Nav>
@@ -86,7 +85,7 @@ export const Brand = component$(() => {
   return (
     <div class="flex items-center justify-start">
       <Link href="/resources/" class="transition ease-in-out text-gray-100 hover:bg-neutral-700/20 hover:text-white drop-shadow-xl px-3 pb-3 pt-3 rounded-lg text-lg flex tracking-wider items-center">
-        <img src="//luver.one/48.png" />
+        <img width={48} height={48} src="https://luver.one/48.png" />
         <div class={{
           'transition-all pl-2': true,
           '-ml-6 opacity-0': !location.isNavigating,
