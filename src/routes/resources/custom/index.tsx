@@ -210,11 +210,10 @@ export default component$(() => {
               </TextInput>
             </div>
             <div class="sm:mt-6 mb-4 space-y-4 hidden sm:block" id="formatting">
-              <Toggle id="bold" checked={store.bold}
-                onChange$={(event: any) => { store.bold = event.target!.checked; setCookie(JSON.stringify(store)); }}
+              <Toggle id="bold" checked={defaults.bold}
                 label='Жирный шрифт'
                 disabled />
-              <Toggle id="smallcaps" checked={store.bold}
+              <Toggle id="smallcaps" checked={defaults.bold}
                 disabled
                 label="Маленький шрифт" />
             </div>
