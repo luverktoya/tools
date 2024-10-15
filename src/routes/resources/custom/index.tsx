@@ -64,7 +64,7 @@ export default component$(() => {
     }[],
   }, { deep: true });
 
-  const output = store.text.replace(/[a-z]/g, function(match) {
+  const output = store.text.toLowerCase().replace(/[a-z]/g, function(match) {
     return replacements[match as keyof typeof replacements];
   });
 
