@@ -89,7 +89,7 @@ export default component$(() => {
       <div class="my-10 min-h-[60px] w-full">
 
         {/* charlimit={256} */}
-        <TextArea output id="Output" value={generateOutput(output, store.colors, defaults.format, store.formatchar, store.prefix, store.bold, store.italic, store.underline, store.strikethrough)}>
+        <TextArea output id="Output" value={generateOutput(output, store.colors, defaults.format, defaults.formatchar, defaults.prefix, defaults.bold)}>
           <Header>
             Вывод
           </Header>
