@@ -10,10 +10,6 @@ import { Button, ColorInput, Header, NumberInput, TextArea, TextInput, Toggle } 
 import { inlineTranslate, useSpeak } from 'qwik-speak';
 import { getCookies } from '~/components/util/SharedUtils';
 
-const formats = [
-  '&x&$1&$2&$3&$4&$5&$6$f$c',
-];
-
 const presets = {
   'stun': ['#FFFFFF', '#32CD32'],
 };
@@ -34,10 +30,10 @@ export const setCookie = $(function (store: any) {
 });
 
 const replacements = {
-  'a': 'ᴀ', 'b': 'ʙ', 'c': 'ᴄ', 'd': 'ᴅ', 'e': 'ᴇ', 'f': 'ғ', 'g': 'ɢ',
-  'h': 'ʜ', 'i': 'ɪ', 'j': 'ᴊ', 'k': 'ᴋ', 'l': 'ʟ', 'm': 'ᴍ', 'n': 'ɴ',
-  'o': 'ᴏ', 'p': 'ᴘ', 'q': 'ǫ', 'r': 'ʀ', 's': 's', 't': 'ᴛ', 'u': 'ᴜ',
-  'v': 'ᴠ', 'w': 'ᴡ', 'x': 'x', 'y': 'ʏ', 'z': 'ᴢ',
+  a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ғ', g: 'ɢ',
+  h: 'ʜ', i: 'ɪ', j: 'ᴊ', k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ',
+  o: 'ᴏ', p: 'ᴘ', q: 'q', r: 'ʀ', s: 's', t: 'ᴛ', u: 'ᴜ',
+  v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ',
 };
 
 const defaults = {
@@ -96,7 +92,7 @@ export default component$(() => {
       <div class="my-10 min-h-[60px] w-full">
 
         {/* charlimit={256} */}
-        <TextArea output id="Output" value={generateOutput(output, store.colors, store.format, store.formatchar, store.prefix, store.bold, store.italic, store.underline, store.strikethrough)}>
+        <TextArea output id="Output" value={generateOutput(output, store.colors, defaults.format, store.formatchar, store.prefix, store.bold, store.italic, store.underline, store.strikethrough)}>
           <Header>
             Вывод
           </Header>
@@ -215,31 +211,6 @@ export default component$(() => {
               <TextInput id="input" value={store.text} placeholder="stun" onInput$={(event: any) => { store.text = event.target!.value; setCookie(JSON.stringify(store)); }}>
                 Текст
               </TextInput>
-
-              {
-                store.customFormat && <>
-                  <TextInput id="customformat" value={store.format} placeholder="&#$1$2$3$4$5$6$f$c" onInput$={(event: any) => { store.format = event.target!.value; setCookie(JSON.stringify(store)); }}>
-                    {t('color.customFormat@@Custom Format')}
-                  </TextInput>
-                  <div class="pb-4">
-                    <p>{t('color.placeholders@@Placeholders:')}</p>
-                    <p>$1 - (R)RGGBB</p>
-                    <p>$2 - R(R)GGBB</p>
-                    <p>$3 - RR(G)GBB</p>
-                    <p>$4 - RRG(G)BB</p>
-                    <p>$5 - RRGG(B)B</p>
-                    <p>$6 - RRGGB(B)</p>
-                    <p>$f - {t('color.formatting@@Formatting')}</p>
-                    <p>$c - {t('color.character@@Character')}</p>
-                  </div>
-                </>
-              }
-
-              <div class="flex gap-2">
-              </div>
-              {store.alerts.map((alert: any, i: number) => (
-                <p key={`preset-alert${i}`} class={alert.class} dangerouslySetInnerHTML={t(`${alert.translate}@@${alert.text}`)} />
-              ))}
             </div>
             <div class="sm:mt-6 mb-4 space-y-4 hidden sm:block" id="formatting">
               <Toggle id="bold" checked={store.bold}
