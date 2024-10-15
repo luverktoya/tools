@@ -1,7 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { Link, type DocumentHead } from '@builder.io/qwik-city';
-import { Button, LogoBirdflop } from '@luminescent/ui';
-import Background from '~/components/images/background.png?jsx';
+import { Button } from '@luminescent/ui';
 
 export default component$(() => {
   return (
