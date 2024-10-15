@@ -33,14 +33,14 @@ export default component$(() => {
                 Flags
             </Header>
           </Card>
-          <Card href="//tools.p2g.lol" color="pink" blobs hover="clickable">
-            <Header subheader="Quickly edit and convert any video">
-                Play2GO Video
+          <Card href="/resources/custom" color="pink" blobs hover="clickable">
+            <Header>
+                Custom
             </Header>
           </Card>
-          <Card href="//check.stun.services" color="orange" blobs hover="clickable">
+          <Card href="//mcsrvstat.us" color="orange" blobs hover="clickable">
             <Header subheader="Check any server status">
-                Server Status
+                MCSrvStat.us
             </Header>
           </Card>
         </div>
